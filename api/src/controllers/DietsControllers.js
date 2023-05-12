@@ -1,26 +1,23 @@
 const axios = require ('axios')
-const {Diets} =  require ("../db") 
+const { Diets }=require("../db.js") 
 require('dotenv').config();
-const { URL } = process.env
-
-
+const { INFO_DIETS,URL } = process.env
 
 const GetAlldiets= async ()=>{
-    const bdDiets = await Diets.findAll();
-    if(bdDiets.length === 0){
-        const Dietsdef = await axios.get(URL)
-        
-        const results = Dietsdef.data.results;
-
-
-        const copiaBd = results.map((elem)=>{
-            Diets.create({
-
+const dietsApi = await axios.get(INFO_DIETS)
+        const dietArray = dietsApi.data.results?.map((recipe) => recipe.diets);
+        const dietsEach = dietArray.flat();
+        const diets = [...new Set(dietsEach)];
+      diets.forEach((diet) => {
+            Diets.findOrCreate({
+                where: {
+                    name: diet,
+                }
             })
-        });
-        return results;
-    } else {return bdDiets }
-}
+
+        })
+        return Diets.findAll()
+    }
 
 module.exports =
     GetAlldiets

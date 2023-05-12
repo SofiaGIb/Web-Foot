@@ -36,7 +36,13 @@ module.exports = (sequelize) => {
       allowNull:false
 
     },
-  },
+
+    Resum_plato:{
+      dtype : DataTypes.STRING
+
+    },
+    },
+  
   {freezeTableName:true, 
   timestamps:false}
   );
