@@ -13,9 +13,14 @@ module.exports = (sequelize) => {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-
-
+        unique :true,
+        
+        validate: {
+          notNull:{
+          msg:"El plato con este nombre ya existe"
+          },
+        }
+      }
   } ,{freezeTableName:true, 
     timestamps:false}
   );

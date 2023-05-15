@@ -12,35 +12,47 @@ module.exports = (sequelize) => {
       isUUID: 4
     }
     },
-    name:{
+    Name:{
       type: DataTypes.STRING,
       allowNull: false,
+      unique :true,
       validate: {
+        notNull:{
+        msg:"El plato con este nombre ya existe"
+        },
         len :[5,15],
-        notEmpty: true,
-        msg : "Es necesario un name"
-      }
-    },
-    Img:{
-      type: DataTypes.STRING,
+        }
+        
+      },
+    
+    Img: DataTypes.STRING,
 
-    },
-    Nivel_Saludable:{
-      type: DataTypes.STRING,
-      allowNull: false,
-
-    },
-    Pasos:{
+    Steps:{
       type: DataTypes.TEXT,
       unique: true,
-      allowNull:false
+      allowNull:false,
+    validate: {
+      notNull:{
 
+        msg : "Debes ingresar una url"
+      }
+}
     },
 
-    Resum_plato:{
-      dtype : DataTypes.STRING
 
+     Sumary:DataTypes.STRING,
+
+     Health_score:{
+      type : DataTypes.STRING,
+      allowNull: false ,
+      validate :{
+        notNull : {
+          msg : "Debes asignarle un valor"
+        }
+      }
+      
     },
+
     },
   
   {freezeTableName:true, 

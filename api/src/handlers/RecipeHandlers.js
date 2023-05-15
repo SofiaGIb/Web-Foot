@@ -1,5 +1,5 @@
-const {Recipe } =  require ("../db");
-const {IdRecipe} = require ("../controllers/RecipeControllers")
+const {Recipe,Diets } =  require ("../db");
+const {IdRecipe,PostRecipe,RecipeMatch,RecipeApi} = require ("../controllers/RecipeControllers")
 
 // Trae recipes con el id seleccionado 
 const RecipeId = async (req,res)=>{
@@ -13,16 +13,30 @@ const RecipeId = async (req,res)=>{
         
     }
 }
+/*  Trae recetas por name 
+ */
+const RecipeName = async (req,res)=>{
+    const {name} = req.query; 
 
+try {
+    const FountRecipe = name ? await  RecipeMatch(name) : await RecipeApi();
+    res.status(200).json(FountRecipe)
+    
+} catch (error) {
+    res.status(400).send(`Sorry,recipe not found`)
+    
+}    
+}
 
 
 const CreateHrecipe  = async(req,res) =>{
 
-    const {name,Img,Nivel_Saludable,pasos} = req.body;
+    const {Name,Img,Pasos,Level_Healthy,Resum_Plato,Diets} = req.body;
     try {
-        
+        const NewRecipe = await PostRecipe(Name,Img,Pasos,Level_Healthy,Resum_Plato,Diets);
+       res.status(201).json(NewRecipe);
     } catch (error) {
-        res.status(400).json({error:error.message})
+        res.status(400).send({error:error.message})
         
     }
 }
