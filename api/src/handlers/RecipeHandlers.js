@@ -33,48 +33,16 @@ const RecipeName = async (req, res) => {
     
     
   }
-/*   try {
-    if (name) {
-        let recipeByName = FountRecipe.filter(e => e.name.toLowerCase().includes(name.toString().toLowerCase()));
-       
-        if (recipeByName.length) {
-            let recipes = recipeByName.map(e => {
-                return {
-                    image: e.image,
-                    name: e.name,
-                    dietTypes: e.diets ? e.diets : e.diets.map(e => e.name),
-                    score: e.score,
-                    id: e.id
-                }
-            })
-            return res.status(200).send(recipes); 
-        }  
-        return res.status(404).send('Sorry, recipe not found')
-    } else {
-        let recipes = FountRecipe.map(e => {
-            return {
-                image: e.image,
-                name: e.name,
-                diets: e.diets ? e.diets : e.diets.map(e => e.name),
-                score: e.score,
-                id: e.id
-            }
-        })
-        return res.status(200).send(recipes);
-    }
-} catch {
-   return res.status(400).send('invalid input');
-}
- */ 
+ 
 };
 
 
 const CreateHrecipe = async (req, res) => {
-  const { Name, Img, Steps, Health_score, Sumary, Diets } = req.body;
+  const { Name, image, Steps, Health_score, Sumary, Diets } = req.body;
   try {
     const NewRecipe = await PostRecipe(
       Name,
-      Img,
+      image,
       Steps,
       Health_score,
       Sumary,

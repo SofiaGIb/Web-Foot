@@ -11,11 +11,11 @@ const IdRecipe = async (id, source) => {
       )
     ).data;
     const recipeDetail = {
-      Img: recipe.image,
+      image: recipe.image,
       Name: recipe.title,
       Sumary: recipe.summary,
       Healthscore: recipe.healthScore,
-      dietTypes: recipe.diets ? recipe.diets : recipe.diets.map((e) => e.name),
+      diets: recipe.diets ? recipe.diets : recipe.diets.map((e) => e.name),
     };
     return recipeDetail;
   } else {
@@ -32,18 +32,18 @@ const searchByName = async (name)=>{
       through: { attributes: [],}
     },
   })
- const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=2c13b2d9f3524f80b8578a1d202f9229&addRecipeInformation=true&number=100`)
+ const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
 const resultApi = recipeApi.data.results
 const filterApi = resultApi.filter((recipe)=> recipe.title === name)
 const cleanApi = filterApi.map((recipe)=>{
   console.log(recipe.analyzedInstructions[0]?.steps);
   return {
-    Id: recipe.id,
-    Img: recipe.image,
+    id: recipe.id,
+    image: recipe.image,
     name: recipe.title,
     Sumary: recipe.summary,
     Health_score: recipe.healthScore,
-    Diets: recipe.diet,
+    diets: recipe.diets,
      steps: recipe.analyzedInstructions[0]?.steps.map( (step)=>{
       return {
         number : step.number,
@@ -57,10 +57,10 @@ return [...cleanApi,...recipeBd]
 }
 
 // creara las recetas
-const PostRecipe = async (Name, Img, Steps, Health_score, Sumary, Diets) => {
+const PostRecipe = async (Name, image, Steps, Health_score, Sumary, Diets) => {
   const RecipeNew = await Recipe.create({
     Name,
-    Img,
+    image,
     Steps,
     Health_score,
     Sumary,
@@ -79,16 +79,16 @@ const GetAllRecipe = async () => {
       through: { attributes: [],}
     },
 })
- const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=2c13b2d9f3524f80b8578a1d202f9229&addRecipeInformation=true&number=100`)
+ const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
 const resultApi = recipeApi.data.results
  const cleanApi = resultApi.map((results)=>{
   return {
-    Id: results.id,
-    Img: results.image,
+    id: results.id,
+    image: results.image,
     name: results.title,
     Sumary: results.summary,
     Health_score: results.healthScore,
-    Diets: results.diet,
+    Diets: results.diets,
      steps: results.analyzedInstructions[0]?.steps.map( (step)=>{
       return {
         number : step.number,

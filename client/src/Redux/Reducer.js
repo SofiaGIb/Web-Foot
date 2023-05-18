@@ -1,22 +1,20 @@
-                                                                                                                             import { ALL_RECIPE  } from './actions'
+import { ALL_RECIPE,DETAIL_RECIPE } from "./actions";
 
-const  initialState = {
-allRecipe:[]
+const initialState = {
+ recipedata: [],
+ Details :[],
 };
 
-const rootReducer = (state = initialState,action) => {
-   
-    const  allRecipe = state.allRecipe;
-    switch (action.type){
-        case ALL_RECIPE:
-            return {...state,
-            allRecipe:action.payload 
-        }
-    
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ALL_RECIPE:
+      return { ...state, recipedata: action.payload};
+ case  DETAIL_RECIPE:
+  return {...state , Details: action.payload,}
+    default:
+      return { ...state };
+  }
+};
 
-    default : return {...state}
 
-}
-}
-
-export default rootReducer
+export default rootReducer;

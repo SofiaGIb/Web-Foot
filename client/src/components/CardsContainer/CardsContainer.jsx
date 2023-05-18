@@ -1,10 +1,19 @@
-import Card from '../Card/Card'
-function CardsContainer() {
-  return (
-    <div>
-      <Card/>
-    </div>
-  )
-}
+import Card from "../Card/Card";
+import { useSelector } from "react-redux";
 
-export default CardsContainer
+const CardsContainer = () => {
+  const recipe = useSelector((state) => state.recipedata);
+  return (
+    <div> 
+      {recipe.map(recipe => {
+        return <Card name={recipe.name} 
+        Diets={recipe.Diets}
+        
+        
+        image={recipe.image} />
+      })}
+    </div>
+  );
+};
+
+export default CardsContainer;

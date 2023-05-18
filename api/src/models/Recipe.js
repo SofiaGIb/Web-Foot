@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Recipe",
     {
-      Id: {
+      id: {
         type: DataTypes.UUID(),
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
         },
       },
 
-      Img: DataTypes.STRING,
+      image: DataTypes.STRING,
 
       Steps: {
         type: DataTypes.TEXT,
