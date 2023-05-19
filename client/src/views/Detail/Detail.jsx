@@ -1,15 +1,15 @@
 import  { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
- import { useParams } from "react-router-dom";
  import { DetailRecipe } from "../../Redux/actions";
+ import { useParams } from "react-router-dom/";
 
 function Detail() {
-  const { id } = useParams();
+  const {id} = useParams()
   const dispatch = useDispatch();
   const Details = useSelector((state) => state.Details);
   useEffect(() => {
     dispatch(DetailRecipe(id));
-  },[]);
+  },[id,dispatch]);
 
   return (
     <div >

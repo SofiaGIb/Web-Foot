@@ -1,6 +1,6 @@
 import React from "react";
 import style from './Card.module.css'
-import { Link } from "react-router-dom/";
+import { Link } from "react-router-dom";
 
 function Card({name,image,Diets}) {
 console.log(image);
