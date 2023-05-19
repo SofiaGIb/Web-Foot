@@ -7,9 +7,10 @@ function Detail() {
   const {id} = useParams()
   const dispatch = useDispatch();
   const Details = useSelector((state) => state.Details);
+  console.log(id);
   useEffect(() => {
     dispatch(DetailRecipe(id));
-  },[id,dispatch]);
+  },[dispatch,id]);
 
   return (
     <div >

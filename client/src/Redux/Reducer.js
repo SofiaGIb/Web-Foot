@@ -1,8 +1,8 @@
-import { ALL_RECIPE,DETAIL_RECIPE,RECIPE_NAME,ADD_RECIPE,DIET_TYPE,FILTER_RECIPES,SCORE_SORT,ORDEN_ALFABETICO, FILTER_DIETS} from "./actions";
+import { ALL_RECIPE,DETAIL_RECIPE,RECIPE_NAME,ADD_RECIPE,DIET_TYPE,SCORE_SORT,ORDEN_ALFABETICO, FILTER_DIETS} from "./actions";
 
 const initialState = {
  recipes: [],
- Details :[],
+ Details :{},
  allRecipes:[],
  dietsTypes:[]
 };
@@ -11,15 +11,24 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_RECIPE:
       return { ...state,
+        recipes : action.payload,
         allRecipes:action.payload,
-         recipes: action.payload};
+         };
 
  case  DETAIL_RECIPE:
-  return {...state , Details: action.payload,}
-  
-  case RECIPE_NAME: 
-  return {...state,recipes:action.payload}
-  
+   return {...state , Details: action.payload,}
+   
+   case RECIPE_NAME: 
+   const filtroName = allRecipes.sort((recipeA, recipeB) => {
+    if (action.payload === "up") 
+    return recipeA.name.toLowerCase() < recipeB.name.toLowerCase()?-1:0;
+    return recipeB.name.toLowerCase() < recipeA.name.toLowerCase()?-1:0;
+  });
+   return{
+    ...state,
+    recipes:filtroName
+   }
+   
   case ADD_RECIPE:
     return {...state  }
   

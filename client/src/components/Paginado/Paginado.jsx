@@ -2,7 +2,7 @@ import React from 'react'
 import style from "./pagina.module.css"
 
 
-function Paginado({recipesPage,allRecipes,paged}) {
+function Paginados({recipesPage,allRecipes,paged}) {
   const pages =[];
   for(let i =1; i<=Math.ceil(allRecipes/recipesPage);i++){
     pages.push(i)
@@ -13,10 +13,10 @@ function Paginado({recipesPage,allRecipes,paged}) {
       <></>:
        <nav className={style.pagination}>
         <ul className={style.pages}>
-          {pages?.map(p=>(
-            <li className={style.page} key={p}>
+          {pages?.map(num=>(
+            <li className={style.page} key={num}>
 
-              <button className={style.pageBtn} onClick={()=>paged(p)} style={{width:"30px"}}>{p}</button>
+              <button className={style.pageBtn} onClick={()=>Paginados(num)} style={{width:"30px"}}>{num}</button>
             </li>
           ))}
 
@@ -27,4 +27,4 @@ function Paginado({recipesPage,allRecipes,paged}) {
   )
 }
 
-export default Paginado
+export default Paginados

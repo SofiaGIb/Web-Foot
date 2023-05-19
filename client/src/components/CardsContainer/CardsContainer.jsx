@@ -1,18 +1,21 @@
 import Card from "../Card/Card";
 import { useSelector } from "react-redux";
 
-const CardsContainer = () => {
-  const recipe = useSelector((state) => state.recipedata);
+const CardsContainer = ({ninerecipes}) => {
+  const recipe = useSelector((state) => state.allRecipes);
   return (
     <div> 
-      {recipe.map(recipe => {
-        return <Card name={recipe.name} 
+      {ninerecipes?(
+      ninerecipes.map((recipe) => {
+        return ( <Card 
+          id={recipe.id}
+          name={recipe.name} 
         Diets={recipe.Diets}
-        
-        
         image={recipe.image} />
-      })}
-    </div>
+        );
+      })
+      ) : ( <h1>Cargando</h1>)}
+    </div> 
   );
 };
 

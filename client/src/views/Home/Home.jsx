@@ -1,41 +1,41 @@
-import { useEffect } from "react";
+import { useEffect ,useState} from "react";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {Recipes } from "../../Redux/actions";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import Paginado from "../../components/Paginado/Paginado"
-
+import Paginados from "../../components/Paginado/Paginado";
+import FilterName from "../../components/Filtros/filtrosname";
+import FilterTypes from "../../components/Filtros/filterstype";
 const  Home = ()=> {
-
-  const [page, setPage] = useState(1);
-  const [recipesPage, setRecipesPage] = useState(9);
-  
-  const quantityRecipesPage = page * recipesPage;
-  const firstRecipePage = quantityRecipesPage - recipesPage;
-  const showRecipesPage = allRecipes.slice(firstRecipePage, quantityRecipesPage);
-  
-  const paginado = (pageNumber) => {
-      setPage(pageNumber)
-  };
-
-
-
-
-
-
-
-
 
 
   const dispatch = useDispatch();
+  const recipes = useSelector((state)=>state.recipes);
+  const allRecipes =useSelector((state)=>state.allRecipes);
+  console.log(recipes);
+const [nameOrder,setnameOrder] = useState("")
+
+  const [pages,setPages] =useState(1);
+  const [recipesPage,setRecipesPage] = useState(9);
+  
+  const lastrecipes = pages * recipesPage;
+  const firstrecipe= lastrecipes - recipesPage;
+  const ninerecipes = recipes.slice(firstrecipe,lastrecipes)
+
+  const paginado = (namberpage)=>{
+    setPages(namberpage)
+  }
+
+
   useEffect(()=>{dispatch(Recipes())},[dispatch])
 
   return (
     <div>
-      <h1>Vista de Home </h1>
-      <Paginado  recipesPage={recipesPage} allRecipes={allRecipes.length} paginado={paginado}/>
+      <FilterTypes/>
+      <FilterName setPages={setPages} nameOrder={nameOrder} setnameOrder={setnameOrder}/>
       <SearchBar/>
-      <CardsContainer/>
+      <Paginados allRecipes={allRecipes.length} recipesPage={recipesPage} paginado={paginado}/>
+      <CardsContainer ninerecipes={ninerecipes}/>
 
     </div>
   )
