@@ -1,0 +1,9 @@
+.container {
+   width: 900px; /* Ancho deseado del contenedor */
+   height: 900px; /* Alto deseado del contenedor */
+   display: grid;
+   grid-template-columns: repeat(3, 1fr); /* Divide el contenedor en 3 columnas de tamaño igual */
+   grid-template-rows: repeat(3, 1fr); /* Divide el contenedor en 3 filas de tamaño igual */
+   gap: 10px; 
+   margin: 20px;
+}

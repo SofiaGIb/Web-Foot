@@ -1,7 +1,33 @@
-.mainContainer {
+/* .mainContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     border-radius: 15px ;
     border: 1px solid black;
-}
+} */
+
+.navbar {
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  .navbar-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .nav-item {
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+  }
+  
+  .nav-link:hover {
+    background-color: #ddd;
+  }

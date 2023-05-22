@@ -1,3 +1,4 @@
+import style from "./Home.module.css"
 import { useEffect ,useState} from "react";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +8,6 @@ import Paginados from "../../components/Paginado/Paginado";
 import FilterName from "../../components/Filtros/filtrosname";
 import FilterTypes from "../../components/Filtros/filterstype";
 const  Home = ()=> {
-
 
   const dispatch = useDispatch();
   const recipes = useSelector((state)=>state.recipes);
@@ -30,7 +30,7 @@ const [nameOrder,setnameOrder] = useState("")
   useEffect(()=>{dispatch(Recipes())},[dispatch])
 
   return (
-    <div>
+    <div className={style.home}>
       <FilterTypes/>
       <FilterName setPages={setPages} nameOrder={nameOrder} setnameOrder={setnameOrder}/>
       <SearchBar/>
@@ -40,5 +40,4 @@ const [nameOrder,setnameOrder] = useState("")
     </div>
   )
 }
-
 export default Home;

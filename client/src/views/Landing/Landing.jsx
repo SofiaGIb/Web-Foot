@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import style from "./landing.module.css"
 
 function Landing() {
   return (
-    <div>
+    <div className={style.landingImg}>
       <Link to="/home">
-      <button>Home</button>
+      <button className={style.button}>Home</button>
       </Link>
-      <h1>LANDING</h1>
+      <p className={style.texto}><h1>FOOD & HEALTH  </h1> <h3>  Te encontraras con una gran variedad de  recetas saludables ,faciles y deliciosas, que cuenta con un paso a paso e instrucciones claras 
+        <h2>Bienvenido </h2>  </h3></p>
     </div>
   )
 }

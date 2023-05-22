@@ -1,30 +1,44 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { dietsType,filterdiets } from '../../Redux/actions'; 
- import { useEffect } from 'react';
 
+import style from "./filters.module.css"
+import { useSelector, useDispatch } from "react-redux";
+import { dietsType, filterdiets } from "../../Redux/actions";
+import { useEffect } from "react";
+import Paginados from '../Paginado/Paginado'
 
+const FilterTypes = ({ setPages }) => {
+  const dispatch = useDispatch();
+  const dietsTypes = useSelector((state) => state.dietsTypes);
 
+  useEffect(() => {
+    dispatch(dietsType());
+  }, [dispatch]);
 
-const FilterTypes= ({setPages}) =>{
-    const dispatch = useDispatch()
-    const  dietsTypes = useSelector((state) => state.dietsTypes)
-  
-    useEffect(()=>{
-      dispatch(dietsType())
-    },[dispatch])
-  
-    const FilterTypes = (event) =>{
-      event.preventDefault()
-      dispatch(filterdiets(event.target.value))
-      setPages(1)
-    }
-  
-    return (
-      <div >
-        <label >
-          Por Tipo -
-          <select  onChange={(event)=>FilterTypes(event)}>
-            <option  value="All">Todos</option>
+  const FilterTypes = (event) => {
+    event.preventDefault();
+    dispatch(filterdiets(event.target.value));
+    setPages(1);
+  };
+
+  return (
+    <div>
+      <label className={style.filters}>
+        DIET TYPES -
+        <select onChange={(event) => FilterTypes(event)}>
+          <option disabled selected>
+            Select...
+          </option>
+          <option value="gluten free">Gluten Free</option>
+          <option value="ketogenic">Keto</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="lacto vegetarian">Lacto-Vegetarian</option>
+          <option value="ovo vegetarian">Ovo-Vegetarian</option>
+          <option value="lacto ovo vegetarian">Lacto-Ovo-Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="pescetarian">Pescetarian</option>
+          <option value="paleolithic">Paleo</option>
+          <option value="primal">Primal</option>
+          <option value="dairy free">Dairy Free</option>
+          {/*             <option  value="All">Todos</option>
             {
                dietsTypes.map((type)=>
                 ( 
@@ -32,10 +46,11 @@ const FilterTypes= ({setPages}) =>{
                 )
               )
             }
-          </select>
-        </label>
-      </div>
-    )
-  };
-  
-  export default FilterTypes;
+ */}{" "}
+        </select>
+      </label>
+    </div>
+  );
+};
+
+export default FilterTypes;

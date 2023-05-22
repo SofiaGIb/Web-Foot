@@ -16,7 +16,13 @@ const IdRecipe = async (id, source) => {
       Sumary: recipe.summary,
       Healthscore: recipe.healthScore,
       diets: recipe.diets ? recipe.diets : recipe.diets.map((e) => e.name),
-    };
+      steps: recipe.analyzedInstructions[0]?.steps.map( (step)=>{
+        return {
+          number : step.number,
+          step :step.step
+        };
+      })
+    }
     return recipeDetail;
   } else {
     return await Recipe.findByPk(id);

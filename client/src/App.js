@@ -12,7 +12,7 @@ function App() {
       <Route exact  path = "/"><Landing /></Route>
       <Route path ="/Home">  <Home  /></Route>
 
-      <Route path= "/Detail"><Detail /></Route>
+      <Route path= "/Detail/:id"><Detail /></Route>
 
 
       <Route path = "/Create" render = {()=><Form/>}/>
