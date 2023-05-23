@@ -48,7 +48,7 @@ const CreateHrecipe = async (req, res) => {
       Sumary,
       Diets
     );
-    res.status(201).json(NewRecipe);
+    res.status(201).json("creado exitoxamente ");
   } catch (error) {
     res.status(400).send({ error: error.message });
   }

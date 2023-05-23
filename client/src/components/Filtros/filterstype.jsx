@@ -3,9 +3,8 @@ import style from "./filters.module.css"
 import { useSelector, useDispatch } from "react-redux";
 import { dietsType, filterdiets } from "../../Redux/actions";
 import { useEffect } from "react";
-import Paginados from '../Paginado/Paginado'
 
-const FilterTypes = ({ setPages }) => {
+const FilterTypes = () => {
   const dispatch = useDispatch();
   const dietsTypes = useSelector((state) => state.dietsTypes);
 
@@ -16,7 +15,6 @@ const FilterTypes = ({ setPages }) => {
   const FilterTypes = (event) => {
     event.preventDefault();
     dispatch(filterdiets(event.target.value));
-    setPages(1);
   };
 
   return (
@@ -38,7 +36,7 @@ const FilterTypes = ({ setPages }) => {
           <option value="paleolithic">Paleo</option>
           <option value="primal">Primal</option>
           <option value="dairy free">Dairy Free</option>
-          {/*             <option  value="All">Todos</option>
+                      <option  value="All">Todos</option>
             {
                dietsTypes.map((type)=>
                 ( 
@@ -46,7 +44,7 @@ const FilterTypes = ({ setPages }) => {
                 )
               )
             }
- */}{" "}
+ 
         </select>
       </label>
     </div>

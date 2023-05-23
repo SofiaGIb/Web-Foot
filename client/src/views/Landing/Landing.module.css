@@ -17,21 +17,96 @@
     opacity: 0.99;
 
 }
-.button{
-    background-image: url('../../image/chef-hat.png');
-    position: absolute;
+
+.box{
+  position: absolute;
+  top: 110px;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: auto;
+  float: left;
+  transition: .5s linear;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 15px;
+  text-align: center;
+  margin: 0 5px;
+  background-color:rgba(231, 239, 216, 0.7);
+  text-transform: uppercase;
+  font-weight: 900;
+;
+}
+
+.box:before{
+position: absolute;
+content: '';
+left: 0;
+bottom: 0;
+height: 4px;
+width: 100%;
+border-bottom: 4px solid transparent;
+border-left: 4px solid transparent;
+box-sizing: border-box;
+transform: translateX(100%);
+}
+.box:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+  
+}
+.box:hover{
+
+  box-shadow: 0 5px 15px rgba(215, 52, 52, 0.5);
+}
+
+
+.box:hover:before{
+  border-color: #223b22;
+  height: 100%;
+  transform: translateX(0);
+  transition: .1s transform linear, .1s
+  height linear .1s;
+}
+.box:hover:after{
+  border-color: #172c17;
+  height: 100%;
+  transform: translateX(0);
+  transition: 1s transform linear, .1s
+  height linear .1s;
+
 
 }
-button:hover {
-    cursor: pointer;
-  }
+.button{
+color: black;
+text-decoration: none;
+cursor: pointer;
+outline: none;
+border: none;
+background: transparent;    
+
+}
 .texto{
     position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(215, 225, 225, 0.8); 
+  background-color: rgba(175, 197, 197, 0.852); 
   padding: 20px;
   border-radius: 5px;
   z-index: 8; 
+  border-radius: 15px;
+}
+.title{
+  text-decoration: underline;
+  text-align: center;
 }

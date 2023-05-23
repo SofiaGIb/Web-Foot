@@ -1,43 +1,51 @@
-import { useDispatch } from "react-redux";
-import { getRecipeByName} from "../../Redux/actions";
-import style from "./filters.module.css"
+import React from 'react'
+import {useDispatch} from "react-redux"
+import style from './filters.module.css'
+import { aplhabeticalSort } from '../../Redux/actions'
 
 
-const FilterName = ({setPages,nameorder,setnameOrder})=>{
-    const dispatch = useDispatch();
+const  FiltrosName = ()=> {
+  const dispatch = useDispatch();
 
-    const filterB = (event)=>{
-     setnameOrder(event.target.id);
-     dispatch(getRecipeByName(event.target.id))
-     setPages(1)
-   
+    function handleAlphabeticalSort(e) {
+        dispatch(aplhabeticalSort(e.target.value))
     }
-   
-    return (
-        <div className={style.orderad}>
-        <label htmlFor="up">
-          <input
-            type="radio"
-            id="up"
-            name="nameorder"
-            checked={ nameorder === "up"}
-            onChange={(event) => filterB(event)}
-          />
-           Ascendiente
-        </label>
-        <label htmlFor="down">
-          <input
-            type="radio"
-            id="down"
-            name="nameorder"
-            checked={ nameorder === "down"}
-            onChange={(event) => filterB(event)}
-          />
-          Descendiente 
-        </label>
-      </div>
-  
 
-    )
+
+  return (
+
+    <select className={style.select} name="alphabetical" onChange={e => handleAlphabeticalSort(e)}>
+    <option disabled selected>Alphabetical</option>
+    <option value="atoz">A -- Z</option>
+    <option value="ztoa">Z -- A</option>
+</select>
+
+
+
+      )
   }
-  export default FilterName 
+  
+  export default FiltrosName
+  /*     <div>
+        <label htmlFor="up">
+            <input
+              name =
+              id="up"
+              name="nameorder"
+              checked={ nameorder === "up"}
+              onChange={(event) => filterB(event)}
+            />
+             Ascendiente
+          </label>
+          <label htmlFor="down">
+            <input
+              type="radio"
+              id="down"
+              name="nameorder"
+              checked={ nameorder === "down"}
+              onChange={(event) => filterB(event)}
+            />
+            Descendiente 
+          </label>
+  
+      </div> */

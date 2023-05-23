@@ -50,6 +50,7 @@ export const getRecipeByName = (name) => {
     }
   };
 };
+//const results = !search ? name : name.filter((dato)=> dato.name.toLowercase(include(search.toLocaleLowerCase())))
 
 //*AGREGA RECETA
 export const ADD_RECIPE = "ADD_RECIPE";
@@ -71,8 +72,8 @@ export const dietsType = () => {
   return async function (dispatch) {
     try {
       let response = await axios.get("/Diets/");
-      let dietsTypes = response.data;
-      return dispatch({ type: DIET_TYPE, payload: dietsTypes });
+      let dietsType = response.data;
+      return dispatch({ type: DIET_TYPE, payload: dietsType });
     } catch (error) {
       console.log(error);
     }

@@ -1,17 +1,49 @@
 .searchButton {
-    color: rgb(231, 218, 218);
-    background-color: #ce5249;
-    font-size: 12px;
-    text-align: center;
-    padding: 5px 25px;
-    margin: 5px;
-    border-radius: 3px;
-    box-shadow: 3px 3px 5px 1px rgb(112, 44, 44);
-    cursor: pointer;
+width: 150px;
+height: 50px;
+cursor:pointer;
+display: flex;
+align-items: center;
+background: transparent;
+border: none;
+border-radius: 5px;
+box-shadow: 1px 1px 3px 
+rgba(0,0,0,0.15);
+background: #e62222;}
+.button,button span{
+    transition: 200ms;
+}
+.button .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
 }
 
+.button .icon {
+    position: absolute;
+    border-left: 1px solid #c4c4c4;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button svg{
+    width: 15px;
+    fill:#eee
+}
+.button:hover .text{
+    color: transparent;
+}
+.button:hover .icon{
+    width: 150px;
+    border-left: none;
+    transform: scale(0.8);
+}
 .searchButton:hover {
-    color:#ce5249;
+    color:#52595f;
     background-color: rgb(231, 218, 218);
 }
 
@@ -24,4 +56,45 @@
     margin-top: 6px;    
     margin-bottom: 6px;
     padding-top: 2px;
+}
+
+
+.inputContainer{
+width: 200px;
+position: relative;
+}
+
+.icon{
+    position: absolute;
+    right: 10px;
+    top: calc(50% + 5px);
+
+    transform: translate(calc(-50% - 5px));
+}
+.input{
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    transition :.2s linear;
+    border:2.5px solid black;
+    font-size: 14px;
+text-transform: uppercase;
+letter-spacing: 2px;
+}
+
+.input:focus{
+    outline: none;
+    border: o.5px solid black;
+    box-shadow: anim 1s linear infinite;
+}
+@keyframes anim{
+    0%,
+    100%{
+        transform: translateX(calc(-50%- 5px))
+        scale(1.1);
+    }
+    50%{
+        transform: translateY(calc(-50% - 5px))
+        scale(1.1);
+    }
 }
