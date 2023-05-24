@@ -20,7 +20,7 @@ overflow: visible;
 transition: transform 0.3s;
   }
 .card:hover{
-  transform:scale(1.4);
+  transform:scale(1.2);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   background-color: #534e4e;
   color: #fff;

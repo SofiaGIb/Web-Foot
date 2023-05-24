@@ -1,10 +1,12 @@
-import { ALL_RECIPE,DETAIL_RECIPE,RECIPE_NAME,ADD_RECIPE,DIET_TYPE,SCORE_SORT,ORDEN_ALFABETICO, FILTER_DIETS} from "./actions";
+import { FILTER_SOURCE,ALL_RECIPE,DELETE_RECIPE,DETAIL_RECIPE,RECIPE_NAME,ADD_RECIPE,DIET_TYPE,SCORE_SORT,ORDEN_ALFABETICO,FILTER_DIETS} from './actions'
 
 const initialState = {
  recipes: [],
  Details :{},
  allRecipes:[],
- dietsTypes:[]
+ dietsTypes:[],
+ filterRecipes:[],
+ source : "All Source"
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,16 +21,9 @@ const rootReducer = (state = initialState, action) => {
    return {...state , Details: action.payload,}
    
    case RECIPE_NAME: 
-   const filtroName = allRecipes.sort((recipeA, recipeB) => {
-    if (action.payload === "up") 
-    return recipeA.name.toLowerCase() < recipeB.name.toLowerCase()?-1:0;
-    return recipeB.name.toLowerCase() < recipeA.name.toLowerCase()?-1:0;
-  });
-   return{
-    ...state,
-    recipes:filtroName
-   }
-   
+   const filterRecipesByName = action.payload.map((recipe) => {
+    return { ...recipe, Diets: state.allRecipes.find((r) => r.id === recipe.id)?.Diets || [],};});
+  return { ...state, recipes: filterRecipesByName };
   case ADD_RECIPE:
     return {...state  }
   
@@ -40,33 +35,25 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case FILTER_DIETS:
-      const allRecipes = state.allRecipes;          
-      const filteredByDietType = allRecipes.filter(r => r.dietsTypes?.some(d => d.toLowerCase() === action.payload.toLowerCase()))           
-      return {
-        ...state,
-        recipes: filteredByDietType
-      };
+      const selectedDiet = action.payload;
+      const recipesFilter =
+      selectedDiet === "All Diet Types"
+    ? [...state.allRecipes]
+    : state.allRecipes.filter( (recipe) => recipe.Diets && recipe.Diets.includes(selectedDiet));
+      return { ...state, recipes: recipesFilter, isFilter: true };
 
 
 
       case ORDEN_ALFABETICO:
-        let sortedRecipes = [...state.recipes]       
-        sortedRecipes = action.payload === 'atoz' ?
-        state.recipes.sort(function(a, b) {
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+        const orderRecipes = [...state.recipes].sort((a, b) => {
+          const nameA = a.name.toLowerCase();
+          const nameB = b.name.toLowerCase();
+          if (nameA < nameB) return action.payload === "AtoZ" ? -1 : 1;
+          if (nameA > nameB) return action.payload === "AtoZ" ? 1 : -1;
           return 0;
-        }) :
-        state.recipes.sort(function(a, b) {
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-          return 0;
-        });          
-        return {
-          ...state,
-          recipes: sortedRecipes
-        };
-
+        });
+        return { ...state, recipes: orderRecipes };
+  
         case SCORE_SORT : 
         let sortedRecipesByScore = [...state.recipes] 
         sortedRecipesByScore = action.payload === 'asc' ?
@@ -85,6 +72,13 @@ const rootReducer = (state = initialState, action) => {
           recipes: sortedRecipesByScore
         };
 
+        case FILTER_SOURCE:
+          const { filterRecipes, source: selectedSource } = action.payload;
+          return { ...state,recipes: filterRecipes, source: selectedSource };
+    
+              
+    case DELETE_RECIPE:
+      return { ...state, allRecipes: action.payload};
 
 
     default:

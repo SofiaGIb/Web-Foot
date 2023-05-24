@@ -7,8 +7,8 @@ function Card({id,name,image,Diets}) {
     <div className={style.card}>
       <Link to={`/Detail/${id}`}>
       <div className={style.title}>
-        <h2 className={style.title}>{name} </h2>
-      </div>
+        <h2 className={style.title}>  {name} </h2>
+      </div> 
       <div >
         <img  src={image}  />
       </div >

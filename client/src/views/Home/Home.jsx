@@ -4,15 +4,12 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { Recipes } from "../../Redux/actions";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import Paginados from "../../components/Paginado/Paginado";
-import FiltrosName from "../../components/Filtros/filtrosname";
-import Score from "../../components/Filtros/filterScore";
-import FiltersOrigen from "../../components/Filtros/filtersorigen";
-import FilterTypes from "../../components/Filtros/filterstype";
+ import Paginado from "../../components/Paginado/Paginado";
+ 
+import Filtersall from "../../components/Filtros/filtersall";
 
 
 function Home() {
-  const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
   const allRecipes = useSelector((state) => state.allRecipes);
   const [nameOrder, setnameOrder] = useState("");
@@ -24,26 +21,20 @@ function Home() {
   const firstrecipe = lastrecipes - recipesPage;
   const ninerecipes = recipes.slice(firstrecipe, lastrecipes);
 
-  const paginado = (namberpage) => {
+  const pagination = (namberpage) => {
     setPages(namberpage);
-  };
+  };  
 
-  useEffect(() => {
-    dispatch(Recipes());
-  }, [dispatch]);
 
   return (
     <div className={style.home}>
-      <FiltrosName/> 
       <SearchBar />
-      <Score/>
-      <FilterTypes/>
-      <Paginados
-        allRecipes={allRecipes.length}
+      <Filtersall/>
+       <Paginado
         recipesPage={recipesPage}
-        paginado={paginado}
-      />
-      <FiltersOrigen/>
+        allRecipes={recipes.length}
+        pagination={pagination}
+  />
       <CardsContainer ninerecipes={ninerecipes} />
     </div>
   );

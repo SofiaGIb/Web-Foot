@@ -45,9 +45,9 @@ function Formulario() {
   });
 
   useEffect(() => {
-//    if (dietsTypes.length === 0) {
-     dispatch(dietsType());
-   // }
+  if (dietsTypes.length === 0) {
+    dispatch(dietsType());
+    }
   }, [dispatch, dietsTypes]);
 
   function handleChange(event) {

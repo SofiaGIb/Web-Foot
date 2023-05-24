@@ -19,7 +19,7 @@
     box-shadow: 3px 3px 5px 1px rgb(112, 44, 44);
     cursor: pointer;
 }
-
+ .num{background-color: #70A288;}
 .backButton:hover {
     color:#ce5249;
     background-color: rgb(231, 218, 218);
@@ -115,3 +115,95 @@
     color: rgb(6, 6, 75);
     font-weight: 500;
 }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .grid {
+    width: 1400px;
+    height: 900px;
+    display: flex;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 5px 10px #033f49;
+    border-radius: 10px;
+    transition: 0.1s;
+  }
+  
+  .grid:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px #026e5e;
+  }
+  
+  .grid .imgContainer {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .grid .cardContent {
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    padding: 10px 15px;
+    text-align: left;
+    
+  }
+  
+  .grid .cardContent .title h1 {
+    color: #04395E;
+  }
+  
+  .grid .cardContent .title h3 {
+    color: #D16666;
+    font-size: 12px;
+    padding-top: 10px;
+  }
+  
+  .grid .cardContent .containerStep {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .grid .cardContent .dietTypes {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 15px;
+  }
+  
+  .grid .cardContent .idNumber {
+    color:#70A288;
+    font-size: 15px;
+  }
+  
+  .grid .buttonContainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: auto;
+  }
+  
+  .grid .buttonContainer button {
+    background-color: rgba(164, 149, 34, 0.4);
+    color: #3d3d3d;
+    padding: 15px 20px;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .grid .buttonContainer button:hover {
+    background-color: rgba(112, 162, 136, 0.2);;
+  }
+  

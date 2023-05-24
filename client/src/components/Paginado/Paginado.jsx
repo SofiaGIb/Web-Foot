@@ -2,21 +2,21 @@ import React from 'react'
 import style from "./pagina.module.css"
 
 
-function Paginados({recipesPage,allRecipes,paged}) {
-  const pages =[];
+function Paginados({recipesPage,allRecipes,pagination}) {
+  const paginado =[];
   for(let i =1; i<=Math.ceil(allRecipes/recipesPage);i++){
-    pages.push(i)
+    paginado.push(i)
   }
   return (
     <div>
-      {pages.length <=1?
+      {paginado.length <=1?
       <></>:
        <nav className={style.pagination}>
         <ul className={style.pages}>
-          {pages?.map(num=>(
+          {paginado?.map(num=>(
             <li className={style.page} key={num}>
 
-              <button className={style.pageBtn} onClick={()=>Paginados(num)} style={{width:"30px"}}>{num}</button>
+              <button className={style.pageBtn} onClick={()=>pagination(num)} style={{width:"30px"}}>{num}</button>
             </li>
           ))}
 

@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
         },
       },
 
-      image: DataTypes.STRING,
+      image: { type: DataTypes.STRING },
 
       Steps: {
         type: DataTypes.TEXT,
@@ -39,8 +39,10 @@ module.exports = (sequelize) => {
         },
       },
 
-      Sumary: DataTypes.STRING,
-
+      Summary:{ type: DataTypes.STRING },
+      dietsTypes: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+      },
       Health_score: {
         type: DataTypes.STRING,
         allowNull: false,
