@@ -76,7 +76,7 @@ function Formulario() {
   useEffect(() => {
     dispatch(addRecipe());
   }, [dispatch]);
-
+ 
   return (
     <div className={style.addRecipe}>
       <form>
