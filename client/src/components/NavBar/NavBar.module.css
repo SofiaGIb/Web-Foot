@@ -1,5 +1,4 @@
 .mainContainer {
-    display: flex;
     flex-direction: row;
     justify-content: space-around;
     border-radius: 15px ;
@@ -16,12 +15,10 @@ padding: 0 20px;
 background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/debut_light.png");
 }
 .navbar {
+  padding: 0;
+  margin:0;
   display: inline-flex;
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
   background-color: #afa3a3;
-  padding: 0 20px;
   border-radius: 40px;
   box-shadow: 0  10px 40px rgba(159,162, 177, .8);
   }

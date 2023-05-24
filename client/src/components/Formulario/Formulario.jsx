@@ -3,100 +3,73 @@ import { addRecipe, dietsType } from "../../Redux/actions";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-const axios = require ('axios');
- 
+const axios = require("axios");
 
 function validate(form) {
   const errors = {};
-  if (!form.name) errors.name = "Please complete with a recipe name";
-  if (!form.summary)
-  errors.summary = "Please add some comments about your recipe";
-  if (form.score < 1 || form.score > 100)
-  errors.score = "The score must be a number between 1 and 100";
-  if (form.healthScore < 1 || form.healthScore > 100)
-  errors.healthScore = "The score must be a number between 1 and 100";
-  if (!form.steps.length)
-  errors.steps = "Please detail the steps for your recipe";
-  if (!form.dietsTypes.length)
-  errors.dietsTypes = "You must select at least one diet type";
+  if (!form.Name) errors.Name = "Please complete with a recipe name";
+  if (!form.Summary)
+    errors.Summary = "Please add some comments about your recipe";
+  if (form.Score < 1 || form.Score > 100)
+    errors.Score = "The score must be a number between 1 and 100";
+  if (form.Health_score < 1 || form.Health_score > 100)
+    errors.Health_scoree = "The score must be a number between 1 and 100";
+  if (!form.Steps)
+    errors.Steps = "Please detail the steps for your recipe";
+  if (!form.dietsTypes)
+    errors.dietsTypes = "You must select at least one diet type";
   return errors;
 }
 
 function Formulario() {
   const dispatch = useDispatch();
   const dietsTypes = useSelector((state) => state.dietsTypes);
-  const [errors, setErrors] = useState({});
-  
+  const [errors, setErrors] = useState({
+    Name: "",
+    Summary: "",
+    Score: "",
+    Health_score: "",
+    Steps: "",
+    Image: " ",
+    dietsTypes: [],
+
+  });
   const [form, setForm] = useState({
-    name: "",
-    summary: "",
-    score: "",
-    healthScore: "",
-    steps: "",
-    image : " ",
+    Name: "",
+    Summary: "",
+    Score: "",
+    Health_score: "",
+    Steps: "",
+    Image: " ",
     dietsTypes: [],
   });
+
   useEffect(() => {
-    dispatch(dietsType());
-  }, [dispatch]);
+//    if (dietsTypes.length === 0) {
+     dispatch(dietsType());
+   // }
+  }, [dispatch, dietsTypes]);
 
   function handleChange(event) {
-    setForm((prevform) => {
-      const newform = {
-        ...prevform,
-        [event.target.name]: event.target.value,
-      };
-      const validations = validate(newform);
-      setErrors(validations);
-      return newform;
-    });
+    const property = event.target.name;
+    const value = event.target.value;
+    setForm({ ...form, [property]: value });
+    setErrors(validate({ ...errors, [property]: value }));
   }
-  function handleCheckBox(event) {
-    let newArray = form.dietsTypes;
-    let find = newArray.indexOf(event.target.value);
-
-    if (find >= 0) {
-      newArray.splice(find, 1);
-    } else {
-      newArray.push(event.target.value);
-    }
-
-    setForm({
-      ...form,
-      dietsTypes: newArray,
-    });
-    const validations = validate(form);
-    setErrors(validations);
+  function handletype(event) {
+    setForm({ ...form, dietsTypes: event.target.value });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    if (Object.values(errors).length > 0) {
-      alert("Please complete the information required");
-    } else if (
-      form.name === "" &&
-      form.summary === "" &&
-      form.score === "" &&
-      form.healthScore === "" &&
-      form.steps === "" &&
-      !form.dietsTypes.length
+    if (
+      form.Name &&
+      form.Summary &&
+      form.Steps &&
+      form.dietsTypes &&
+      form.Score
     ) {
-      alert("Please complete the form");
-    } else {
-     const createrecipe = axios.post('/Recipe',form)
-       
-//dispatch(addRecipe(form));
-       alert("New recipe added successfully!");
-      setForm({
-        name: "",
-        summary: "",
-        image :"",
-        score: "",
-        healthScore: "",
-        steps: [],
-        dietTypes: [],
-      });
+      dispatch(addRecipe(form));
     }
   }
 
@@ -106,7 +79,7 @@ function Formulario() {
 
   return (
     <div className={style.addRecipe}>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form>
         <h1 className={style.title}>Creat your own recipe!</h1>
         <div className={style.form}>
           <div className={style.prettierForm}>
@@ -114,107 +87,105 @@ function Formulario() {
               <label className={style.msgs}>Name:</label>
               <input
                 className={style.forms}
-                name="name"
+                name="Name"
                 type="text"
-                value={form.name}
-                onChange={(e) => handleChange(e)}
+                value={form.Name}
+                onChange={(event) => handleChange(event)}
               />
-              {errors.name && (
-                <span className={style.errors}>{errors.name}</span>
+              {errors.Name && (
+                <span className={style.errors}>{errors.Name}</span>
               )}
             </div>
             <div className={style.nameform}>
               <label className={style.msgs}>Summary:</label>
               <textarea
                 className={style.forms}
-                name="summary"
+                name="Summary"
                 type="text"
                 rows="4"
                 cols="30"
-                value={form.summary}
-                onChange={(e) => handleChange(e)}
+                value={form.Summary}
+                onChange={(event) => handleChange(event)}
               />
-              {errors.summary && (
-                <span className={style.errors}>{errors.summary}</span>
+              {errors.Summary && (
+                <span className={style.errors}>{errors.Summary}</span>
               )}
             </div>
             <div className={style.nameform}>
               <label className={style.msgs}>Score:</label>
               <input
                 className={style.forms}
-                name="score"
+                name="Score"
                 type="number"
-                value={form.score}
-                onChange={(e) => handleChange(e)}
+                value={form.Score}
+                onChange={(event) => handleChange(event)}
               />
-              {errors.score && (
-                <span className={style.errors}>{errors.score}</span>
+              {errors.Score && (
+                <span className={style.errors}>{errors.Score}</span>
               )}
             </div>
             <div className={style.nameform}>
               <label className={style.msgs}>Health Score:</label>
               <input
                 className={style.forms}
-                name="healthScore"
+                name="Health_score"
                 type="number"
-                value={form.healthScore}
-                onChange={(e) => handleChange(e)}
+                value={form.Health_score}
+                onChange={(event) => handleChange(event)}
               />
-              {errors.healthScore && (
-                <span className={style.errors}>{errors.healthScore}</span>
+              {errors.Health_score && (
+                <span className={style.errors}>{errors.Health_score}</span>
               )}
             </div>
             <div className={style.nameform}>
               <label className={style.msgs}>Steps:</label>
               <textarea
                 className={style.forms}
-                name="steps"
+                name="Steps"
                 type="text"
                 rows="4"
                 cols="40"
-                value={form.steps}
-                onChange={(e) => handleChange(e)}
+                value={form.Steps}
+                onChange={(event) => handleChange(event)}
               />
-              {errors.steps && (
-                <span className={style.errors}>{errors.steps}</span>
+              {errors.Steps && (
+                <span className={style.errors}>{errors.Steps}</span>
               )}
             </div>
 
             <div>
-              <label htmlFor="image" className={style.msgs}>
+              <label htmlFor="Image" className={style.msgs}>
                 Link imagen
               </label>
               <input
                 className={style.forms}
                 type="text"
-                name="image"
-                value={form.image}
-                onChange={(e) => handleChange(e)}
+                name="Image"
+                value={form.Image}
+                onChange={(event) => handleChange(event)}
               />
             </div>
-            <div >
+            <div>
               <label className={style.msgs}>Diet Types:</label>
-              {dietsTypes.map((d) => {
-                return (
-                  <div key={d} className={style.checks}>
-                    <label className={style.dietTypes}>{d}</label>
-                    <input
-                      type="text"
-                      name={d}
-                      value={d}
-                      selected={form.dietsTypes.includes(d)}
-                      onChange={(e) => handleCheckBox(e)}
-                    />
-                  </div>
-                );
-              })}
-              {errors.dietsType && (
-                <span className={style.errors}>{errors.dietsType}</span>
-              )}
+              <select onChange={(event)=>handletype(event)}>
+                <option value="-">TYPE DIETS</option>
+                {dietsTypes.map((type) => (
+                  <option value={type.name} key={type.id}>
+                    {type.name}
+                  </option>
+                ))}
+                {errors.dietsTypes && (
+                  <span className={style.errors}>{errors.dietsTypes}</span>
+                )}
+              </select>
             </div>
           </div>
         </div>
-        <button className={style.submitButton} type="submit">
+        <button
+          className={style.submitButton}
+          type="submit"
+          onClick={(event) => handleSubmit(event)}
+        >
           Submit Recipe
         </button>
         <Link to="/home">
@@ -224,5 +195,4 @@ function Formulario() {
     </div>
   );
 }
-
 export default Formulario;
