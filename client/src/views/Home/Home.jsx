@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Recipes } from "../../Redux/actions";
 import SearchBar from "../../components/SearchBar/SearchBar";
  import Paginado from "../../components/Paginado/Paginado";
- 
+import NavBar from "../../components/NavBar/NavBar"; 
 import Filtersall from "../../components/Filtros/filtersall";
 
 
-function Home() {
+function Home() { 
   const recipes = useSelector((state) => state.recipes);
   const allRecipes = useSelector((state) => state.allRecipes);
   const [nameOrder, setnameOrder] = useState("");
@@ -27,8 +27,11 @@ function Home() {
 
 
   return (
+<body className={style.body}>
     <div className={style.home}>
-      <SearchBar />
+      <header className={style.header}>  <NavBar/>
+</header>
+<SearchBar />
       <Filtersall/>
        <Paginado
         recipesPage={recipesPage}
@@ -36,7 +39,9 @@ function Home() {
         pagination={pagination}
   />
       <CardsContainer ninerecipes={ninerecipes} />
+
     </div>
+</body>
   );
 }
 export default Home;

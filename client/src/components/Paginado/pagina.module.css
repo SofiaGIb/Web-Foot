@@ -1,28 +1,29 @@
 .pagination {
     display: flex;
     justify-content: center;
-    padding: 10px 5px 5px;
-    width: 500px;
+    padding: 15px 5px 5px;
+    width: 100px;
 
 }
 
 .pages {
-    /* padding: 1px 300px;
+    padding: 1px 300px;
     display: flex;
-    
-    flex-direction: row;    */
+    flex-direction: row;    
+    background-color: rgb(254, 254, 248);
     display: flex;
-	height: 30px;
     list-style-type:none;
     justify-content: center;
-	box-shadow: 3px 5px 1px rgb(112, 44, 44);
-	padding: 0 20px 4px;
+	box-shadow: 3px 5px 1px #ac9742;
+	padding: 0 10px 5px;
 	border-radius: 7px;
-	background-color: rgb(231, 218, 218);
+    position: absolute;
+    top: 17%;
+    left: 60%;
 }
 
 .pages a:hover{
-    background-color: #ce5249;
+    background-color: #49cead;
     color:  rgb(231, 218, 218);
 }
 .page {
@@ -33,19 +34,19 @@
     cursor: pointer;
     display: flex;    
     justify-content: center;
-	background-color: rgb(231, 218, 218);
+	background-color:transparent;
     border-color: rgb(231, 218, 218);
-    box-shadow: 3px 5px 1px rgb(112, 44, 44);
+    box-shadow: 4px 5px 3px rgb(112, 44, 44);
     color:  rgb(6, 6, 75);
     font-style: italic;
-    font-weight: 700;    
-    text-shadow: 6px 4px 5px rgba(0,0,0,0.43);
+    font-weight: 900;    
+    text-shadow: 18px 18px 18px rgba(0,0,0,0.43);
     border-radius: 10px;
-    height: 30px;    
-	font-size: 15px;	
-	line-height: 25px;
+    height: 40px;    
+	font-size: 25px;	
+	line-height: 38px;
     font-weight: 600;
-    margin: 0 5px;
+    margin: 0 13px;
 } 
 
 .pageBtn :hover {
@@ -60,33 +61,34 @@
    display: flex;
    justify-content: space-between;
    border-radius: 20px;
-      
+      padding: 20px;
 }
 
 .ul{
     list-style-type: none;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     color: rgb(24, 24, 24);
     
 }
 .container {
     display: flex;
-    position: relative;
+    position: absolute;
     align-items: center;
     justify-content: center;
     border-radius: 50% ;
-    height: 2rem;
-    width: 2rem;
-    border: 1px solid #96a368;
-    margin-bottom: 1rem;
+    height: 4rem;
+    width: 4rem;
+    border: 1px solid #f6eedf;
+    margin-bottom: 2rem;
     cursor: pointer;
-    font-size: 1.6rem;
+    font-size: 4.6rem;
     margin-top: 1rem;
+    background-color: transparent;
 
 }
 
 .pagination {
-    margin-top: 10rem;
+    margin-top: 5rem;
 }

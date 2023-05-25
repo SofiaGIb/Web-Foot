@@ -41,6 +41,8 @@ dispatch(DetailRecipe(id),[dispatch,id]) })
     
 
       return (
+        <body className={style.detail}>
+          
         <div className={style.grid}>
         <div className={style.cardContent}>
           <div className={style.title}>
@@ -67,12 +69,13 @@ dispatch(DetailRecipe(id),[dispatch,id]) })
           <img className={style.img} src={Details?.image} alt="" />
         </div>
           <div className={style.buttonContainer}>
-            <Link to="/home">
+            <Link to="/Home">
               <button className={style.buttonBack}>BACK</button>
             </Link>
             {renderDeleteButton()}
           </div>
       </div>
+              </body>
     );
 };
 

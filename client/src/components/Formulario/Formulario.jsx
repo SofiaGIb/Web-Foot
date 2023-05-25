@@ -188,7 +188,7 @@ function Formulario() {
         >
           Submit Recipe
         </button>
-        <Link to="/home">
+        <Link to="/Home">
           <button className={style.goBackButton}>Go back</button>
         </Link>
       </form>

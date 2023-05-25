@@ -2,8 +2,9 @@
     flex-direction: row;
     justify-content: space-around;
     border-radius: 15px ;
-    border: 1px solid black;}
-
+    border: 3px solid black;
+  background-color: transparent;}
+  
 .body{
 text-align: center;
 display: flex;
@@ -12,9 +13,13 @@ width: 100%;
 justify-content: center;
 align-items: center;
 padding: 0 20px;
-background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/debut_light.png");
 }
 .navbar {
+  text-decoration: none;
+  border: 3px solid rgb(202, 190, 190);
+top: 10%;
+left: 2%;
+position: absolute;
   padding: 0;
   margin:0;
   display: inline-flex;
@@ -31,7 +36,8 @@ transition: .3s;
 margin: 0 6px;
 z-index: 1;
 font-family:'DM Sans',sans-serif;
-font-weight: 500;
+font-weight: bold;
+letter-spacing: 2px;
 position: relative;
   }
     
@@ -42,6 +48,7 @@ position: relative;
   }
   
   .nav-link:hover {
+    text-decoration: none;
     background-color: #ddd;
   }
   .indicador{

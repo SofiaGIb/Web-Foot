@@ -1,13 +1,17 @@
 .detail{
-    background: linear-gradient(#aeccc6,#aeccc6);
-    margin: 10px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f6eedf; /* Color de fondo deseado */
+    margin: 0;
+    padding: 0;
 
 }
-
+.body{
+  color: #026e5e;
+}
 .backButton {
     color: rgb(231, 218, 218);
     background-color: #ce5249;
@@ -117,10 +121,8 @@
 }
   
   body {
-    display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
   }
   
   .grid {
@@ -132,6 +134,9 @@
     box-shadow: 0 5px 10px #033f49;
     border-radius: 10px;
     transition: 0.1s;
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 18%;
   }
   
   .grid:hover {

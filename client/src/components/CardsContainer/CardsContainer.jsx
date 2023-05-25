@@ -10,6 +10,7 @@ const CardsContainer = ({ninerecipes}) => {
       {ninerecipes?(
       ninerecipes.map((recipe) => {
         return ( <Card 
+         key={recipe.id}
          id={recipe.id}
           name={recipe.name} 
         Diets={recipe.Diets}

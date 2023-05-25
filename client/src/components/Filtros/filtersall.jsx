@@ -50,7 +50,7 @@ function Filtersall() {
 
 
   return (
-    <div className={style.container}>
+    <div className={style.cajafilter}>
        <div className={style.filterContainer}>
         <span className={style.titleFilter}>Filter By: </span>
         <select defaultValue="Diet Type" onChange={(e) => handlefilterdiets(e.target.value)}  style={{ width: "180px" }}>
@@ -68,18 +68,21 @@ function Filtersall() {
  
   
       <div className={style.filterContainer}>
+      <span className={style.titleFilter}>Source : </span>
+
         <select defaultValue="Source" onChange={(event) => handleFilterBySource(event.target.value)}  style={{ width: "180px" }}>
           <option value="Source" disabled>
             Source
           </option>
-          <option value="All Sources">All Sources</option>
+
+          <option value="All Sources" >All Sources</option>
           <option value="API">API</option>
           <option value="Database">Database</option>
         </select>
       </div>
   
       <div className={style.filterContainer} >
-        <span className={style.titleFilter}>Sort By: </span><br/>
+        <span className={style.titleFilter}>Filter By : </span>
         <select defaultValue="Order By" onChange={handleSortChange} style={{ width: "180px" }}>
           <option value="Order By" disabled="disabled">Order By</option>
           <option value="AtoZ">A-Z</option>
@@ -88,6 +91,8 @@ function Filtersall() {
       </div>
   
       <div className={style.filterContainer}>
+      <span className={style.titleFilter}>Filter By: </span>
+
         <select defaultValue="HealthScore"onChange={handleSortScoreChange} style={{ width: "180px" }}>
           <option value="HealthScore" disabled="disabled">Health Score</option>
           <option value={"ascendent"}>Higher</option>

@@ -7,7 +7,9 @@ axios.defaults.baseURL = 'http://localhost:3001/'
 function App() {
   return (
     <div> 
- {useLocation().pathname !== "/" && <NavBar/>}
+ {useLocation().pathname !== "/Home" && <NavBar/>}
+
+
       <Route exact  path = "/"><Landing /></Route>
       <Route path ="/Home">  <Home  /></Route>
 
