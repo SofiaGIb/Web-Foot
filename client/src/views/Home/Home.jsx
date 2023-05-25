@@ -30,8 +30,8 @@ function Home() {
 <body className={style.body}>
     <div className={style.home}>
       <header className={style.header}>  <NavBar/>
-</header>
 <SearchBar />
+</header>
       <Filtersall/>
        <Paginado
         recipesPage={recipesPage}

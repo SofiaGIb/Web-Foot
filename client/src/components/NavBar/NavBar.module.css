@@ -16,14 +16,14 @@ padding: 0 20px;
 }
 .navbar {
   text-decoration: none;
-  border: 3px solid rgb(202, 190, 190);
-top: 10%;
-left: 2%;
+  border: 6px solid rgb(80, 106, 10);
+top: 2%;
+left: 1%;
 position: absolute;
   padding: 0;
   margin:0;
   display: inline-flex;
-  background-color: #afa3a3;
+  background-color: #efe1e1;
   border-radius: 40px;
   box-shadow: 0  10px 40px rgba(159,162, 177, .8);
   }
